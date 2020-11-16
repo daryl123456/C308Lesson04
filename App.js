@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-
+import moment from 'moment-timezone';
 import React from 'react';
 import {
   SafeAreaView,
@@ -42,11 +42,33 @@ class Eats extends React.Component {
   render() {
     return (
       <Text>
-        {this.props.name} {'\n'}{this.props.location} {'\n'}
+        {this.props.name} {'\n'}
+        {this.props.location} {'\n'}
       </Text>
     );
   }
 }
+class Clocks extends React.Component {
+  render() {
+    let location = this.props.name;
+    let time = moment.tz(location).format('HH mm Z');
+    return (
+      <Text>
+        {location} - {time}
+      </Text>
+    );
+  }
+}
+const WorldClock = () => {
+  return (
+    <View>
+      <Clocks name="Asia/Singapore" />
+      <Clocks name="Europe/Volgograd" />
+      <Clocks name="Atlantic/Reykjavik" />
+      <Clocks name="Europe/Oslo" />
+    </View>
+  );
+};
 const App: () => React$Node = () => {
   console.log('Listing semester modules and recommended eats');
   return (
@@ -80,6 +102,7 @@ const App: () => React$Node = () => {
                 location="W6 Level 1, E-Canteen"
               />
               <Eats name="Crowded Bowl" location="W4/W6 Lawn Canteen" />
+              <WorldClock />
             </View>
           </View>
         </ScrollView>
