@@ -23,8 +23,32 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+const Welcome = () => {
+  return <Text>Welcome to C308 Web Frameworks!</Text>;
+};
+class MyFirstApp extends React.Component {
+  render() {
+    return <Text>My first React Native app {'\n'}</Text>;
+  }
+}
+const SemModule = (props) => {
+  return (
+    <Text>
+      {props.day} - {props.module}
+    </Text>
+  );
+};
+class Eats extends React.Component {
+  render() {
+    return (
+      <Text>
+        {this.props.name} {'\n'}{this.props.location} {'\n'}
+      </Text>
+    );
+  }
+}
 const App: () => React$Node = () => {
+  console.log('Listing semester modules and recommended eats');
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -40,7 +64,22 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text>Welcome to C308 Web Frameworks!</Text>
+              <Welcome />
+              <MyFirstApp />
+              <Text>My module this semester</Text>
+              <SemModule day="Monday" module="C348" />
+              <SemModule day="Tuesday" module="C273" />
+              <SemModule day="Wednesday" module="C390" />
+              <SemModule day="Thursday" module="H001" />
+              <SemModule day="Thursday" module="T002" />
+              <SemModule day="Friday" module="C208" />
+              <SemModule day="Friday" module="G962" />
+              <Text>{'\n'}Recommended Eats @RP</Text>
+              <Eats
+                name="Sweet Tooth Waffles"
+                location="W6 Level 1, E-Canteen"
+              />
+              <Eats name="Crowded Bowl" location="W4/W6 Lawn Canteen" />
             </View>
           </View>
         </ScrollView>
